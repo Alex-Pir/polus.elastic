@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+        bootstrap="tests/index.php" colors="true"
+        beStrictAboutTestsThatDoNotTestAnything="false"
+        verbose="true"
+>
+    <testsuites>
+        <testsuite name="Citfact\Rest Bitrix module Test Suite">
+            <directory>tests/lib</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
