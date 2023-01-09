@@ -38,4 +38,9 @@ class AggregationsBuilder implements AggregationQueryInterface
     {
         return $this->aggregations->toDSL();
     }
+
+    public function getAggregationsQueryValues(): array
+    {
+        return $this->aggregations->toArray();
+    }
 }

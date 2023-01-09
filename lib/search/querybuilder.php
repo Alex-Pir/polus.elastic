@@ -6,10 +6,10 @@ use Polus\Elastic\Search\Contracts\QueryInterface;
 use Polus\Elastic\Search\Contracts\SearchInterface;
 
 /**
- * @method SearchInterface where(string $field, string $operator, string|int|null $value = null)
- * @method SearchInterface whereNot(string $field, string|int $value)
- * @method SearchInterface whereIn(string $field, array $value)
- * @method SearchInterface whereNotIn(string $field, array $value)
+ * @method QueryBuilder where(string $field, string $operator, string|int|null $value = null)
+ * @method QueryBuilder whereNot(string $field, string|int $value)
+ * @method QueryBuilder whereIn(string $field, array $value)
+ * @method QueryBuilder whereNotIn(string $field, array $value)
  */
 abstract class QueryBuilder implements SearchInterface
 {
@@ -17,7 +17,7 @@ abstract class QueryBuilder implements SearchInterface
 
     public function __construct(
         protected string $index,
-        protected ?QueryInterface $query
+        protected ?QueryInterface $query = null
     ) {
         if (is_null($this->query)) {
             $this->query = new BoolBuilder();
@@ -31,8 +31,8 @@ abstract class QueryBuilder implements SearchInterface
         return $this->query;
     }
 
-    public function __call($name, $arguments) {
-        if (!method_exists($this->query, $name)) {
+    public function __call($name, $arguments): QueryBuilder {
+        if (method_exists($this->query, $name)) {
             $this->getQuery()->$name(...$arguments);
         }
 

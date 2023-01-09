@@ -2,6 +2,9 @@
 
 namespace Polus\Elastic\Search\Aggregations\Criteria;
 
+use Polus\Elastic\Search\Aggregations\Results\SearchResult;
+use Polus\Elastic\Search\Aggregations\Results\TermsResult;
+
 class AggregationTerms extends AggregationCriteria
 {
     public function toDSL(): array
@@ -14,5 +17,14 @@ class AggregationTerms extends AggregationCriteria
                 ]
             ]
         ];
+    }
+
+    public function parseResult(array $fields): SearchResult
+    {
+        if (!isset($fields[$this->field])) {
+            return new TermsResult($this->field, ['buckets' => []]);
+        }
+
+        return new TermsResult($this->field, $fields[$this->field]);
     }
 }

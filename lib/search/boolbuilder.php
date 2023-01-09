@@ -9,6 +9,7 @@ use Polus\Elastic\Search\Criteria\Range;
 use Polus\Elastic\Search\Criteria\Term;
 use Polus\Elastic\Search\Criteria\Terms;
 use Polus\Elastic\Search\Exceptions\CriteriaException;
+use stdClass;
 
 class BoolBuilder implements QueryInterface
 {
@@ -73,6 +74,10 @@ class BoolBuilder implements QueryInterface
 
     public function toDSL(): array
     {
+        if ($this->isSearchEmpty()) {
+            return ['match_all' => new stdClass()];
+        }
+
         return [
             'bool' => array_merge(
                 $this->searchWay('must', $this->must),
@@ -95,5 +100,10 @@ class BoolBuilder implements QueryInterface
     protected function searchWay(string $wayName, CriteriaCollection $collection): array
     {
         return $collection->isEmpty() ? [] : [$wayName => $collection->toDSL()];
+    }
+
+    protected function isSearchEmpty(): bool
+    {
+        return $this->must->isEmpty() && $this->mustNot->isEmpty() && $this->filter->isEmpty();
     }
 }

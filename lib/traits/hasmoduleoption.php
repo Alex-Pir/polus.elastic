@@ -40,7 +40,7 @@ trait HasModuleOption
         foreach ($options as $option) {
             $result[$option['NAME']] = $option['VALUE'];
         }
-file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/logRes.log', print_r($result, true) . "\n", FILE_APPEND);
+
         return $result ?? [];
     }
 
