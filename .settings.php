@@ -2,7 +2,7 @@
 return [
 	"controllers" => [
 		"value" => [
-			"defaultNamespace" => "\\Citfact\\Rest\\Controller",
+			"defaultNamespace" => "\\Polus\\Elastic\\Controller",
             'restIntegration' => [
                 'enabled' => true,
             ],

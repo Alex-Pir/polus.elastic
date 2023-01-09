@@ -17,4 +17,9 @@ abstract class AggregationCriteria implements AggregationInterface
     {
         $this->checkEmpty();
     }
+
+    public function getField(): string
+    {
+        return $this->field;
+    }
 }

@@ -12,16 +12,27 @@ class AggregationsCollection implements CriteriaInterface
 
     public function add(AggregationInterface $aggregation): void
     {
-        $this->aggregations[] = $aggregation;
+        $this->aggregations[$aggregation->getField()] = $aggregation;
     }
 
     public function toDSL(): array
     {
-        return array_map(fn(AggregationInterface $aggregation) => $aggregation->toDSL(), $this->aggregations);
+        $result = [];
+
+        foreach ($this->aggregations as $aggregation) {
+            $result = array_merge($result, $aggregation->toDSL());
+        }
+
+        return $result;
     }
 
     public function isEmpty(): bool
     {
         return empty($this->aggregations);
+    }
+
+    public function toArray(): array
+    {
+        return $this->aggregations;
     }
 }
