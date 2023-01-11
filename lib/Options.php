@@ -3,10 +3,10 @@
 namespace Polus\Elastic;
 
 use Bitrix\Main\Localization\Loc;
-use Polus\Elastic\Settings\Fields\TextAreaField;
-use Polus\Elastic\Settings\Tab;
 use Polus\Elastic\Traits\HasModuleOption;
 use Polus\Elastic\Traits\HasModules;
+use Polus\Options\Fields\TextAreaField;
+use Polus\Options\Tab;
 
 Loc::loadMessages(__FILE__);
 

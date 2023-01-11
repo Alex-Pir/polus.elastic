@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "250f5928ad9b2b049581326e51774eec",
+    "content-hash": "204a48340933992f11b76d09f237645d",
     "packages": [
         {
             "name": "composer/installers",
@@ -328,6 +328,34 @@
                 "source": "https://github.com/ezimuel/ringphp/tree/1.2.2"
             },
             "time": "2022-12-07T11:28:53+00:00"
+        },
+        {
+            "name": "polus/module-settings",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Alex-Pir/bitrix_module_options.git",
+                "reference": "f9f9ab115d8c8335f8465c13469726ecd6e41792"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Alex-Pir/bitrix_module_options/zipball/f9f9ab115d8c8335f8465c13469726ecd6e41792",
+                "reference": "f9f9ab115d8c8335f8465c13469726ecd6e41792",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Polus\\": "lib/"
+                }
+            },
+            "description": "Setting classes for bitrix modules",
+            "support": {
+                "source": "https://github.com/Alex-Pir/bitrix_module_options/tree/master",
+                "issues": "https://github.com/Alex-Pir/bitrix_module_options/issues"
+            },
+            "time": "2023-01-11T19:38:52+00:00"
         },
         {
             "name": "psr/log",
@@ -2424,7 +2452,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "polus/module-settings": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

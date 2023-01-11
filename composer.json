@@ -9,10 +9,17 @@
 	"license": "proprietary",
 	"minimum-stability": "stable",
 	"version": "0.1",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/Alex-Pir/bitrix_module_options.git"
+		}
+	],
 	"require": {
 		"php": "8.0.*",
 		"composer/installers": ">=1.0.22",
-		"elasticsearch/elasticsearch": "7.9.1"
+		"elasticsearch/elasticsearch": "7.9.1",
+		"polus/module-settings": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "9.*",
