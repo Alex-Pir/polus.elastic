@@ -13,7 +13,7 @@ use Bitrix\Main\Loader;
 use Bitrix\Main\LoaderException;
 use Bitrix\Main\Localization\Loc;
 use Polus\Elastic\Constants;
-use Polus\Elastic\Settings\ModuleSettings;
+use Polus\Options\ModuleSettings;
 
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 	die();
@@ -21,7 +21,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
 
 Loc::loadMessages(__FILE__);
 
-$moduleId = Constants::MODULE_ID;
+$moduleId = 'polus.elastic';
 
 if (!defined('ADMIN_MODULE_NAME') || ADMIN_MODULE_NAME !== $moduleId) {
 	define("ADMIN_MODULE_NAME", $moduleId);

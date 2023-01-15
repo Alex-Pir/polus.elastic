@@ -5,7 +5,7 @@
         verbose="true"
 >
     <testsuites>
-        <testsuite name="Citfact\Rest Bitrix module Test Suite">
+        <testsuite name="Polus\Elastic Bitrix module Test Suite">
             <directory>tests/lib</directory>
         </testsuite>
     </testsuites>

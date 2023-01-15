@@ -13,17 +13,18 @@ use Polus\Elastic\Search\Contracts\SearchInterface;
  */
 abstract class QueryBuilder implements SearchInterface
 {
-    protected Search $searchClient;
-
     public function __construct(
         protected string $index,
-        protected ?QueryInterface $query = null
+        protected ?QueryInterface $query = null,
+        protected ?Search $searchClient = null
     ) {
         if (is_null($this->query)) {
             $this->query = new BoolBuilder();
         }
 
-        $this->searchClient = new Search();
+        if (is_null($this->searchClient)) {
+            $this->searchClient = new Search();
+        }
     }
 
     public function getQuery(): QueryInterface

@@ -8,4 +8,5 @@ interface QueryInterface extends CriteriaInterface
     public function whereIn(string $field, array $value): QueryInterface;
     public function whereNot(string $field, string|int $value): QueryInterface;
     public function whereNotIn(string $field, array $value): QueryInterface;
+    public function clear(): void;
 }

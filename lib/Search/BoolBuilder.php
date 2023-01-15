@@ -22,9 +22,7 @@ class BoolBuilder implements QueryInterface
 
     public function __construct()
     {
-        $this->must = new CriteriaCollection();
-        $this->mustNot = new CriteriaCollection();
-        $this->filter = new CriteriaCollection();
+        $this->clear();
     }
 
     /**
@@ -32,6 +30,10 @@ class BoolBuilder implements QueryInterface
      */
     public function where(string $field, string $operator, string|int|null $value = null): static
     {
+        if ($operator === static::NOT_EQUALS) {
+            return $this->whereNot($field, $value);
+        }
+
         if (func_num_args() == 2) {
             [$operator, $value] = [static::EQUALS, $operator];
         }
@@ -105,5 +107,12 @@ class BoolBuilder implements QueryInterface
     protected function isSearchEmpty(): bool
     {
         return $this->must->isEmpty() && $this->mustNot->isEmpty() && $this->filter->isEmpty();
+    }
+
+    public function clear(): void
+    {
+        $this->must = new CriteriaCollection();
+        $this->mustNot = new CriteriaCollection();
+        $this->filter = new CriteriaCollection();
     }
 }
