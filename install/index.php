@@ -172,18 +172,22 @@ class POLUS_ELASTIC extends CModule
 	 *
 	 * @return void
 	 */
-	public function installEvents()
+	public function installEvents(): void
 	{
         $eventManager = Main\EventManager::getInstance();
-
-        /**
-         * Изменение выдачи ошибки 404
-         */
-        /*$eventManager->registerEventHandler(
+/*
+        $eventManager->registerEventHandler(
             "main",
-            "OnEpilog",
+            "OnEndBufferContent",
             $this->MODULE_ID,
-            "Citfact\\Rest\\Events\\Epilog\\Handler", "onEpilogHandler"
+            "Polus\\Elastic\\Handlers\\BufferContentHandler", "propertySettingsHandler"
+        );
+
+        $eventManager->registerEventHandler(
+            "iblock",
+            "OnIBlockPropertyBuildList",
+            $this->MODULE_ID,
+            "Polus\\Elastic\\Handlers\\BufferContentHandler", "customerPropertyType"
         );*/
 	}
 
@@ -192,14 +196,20 @@ class POLUS_ELASTIC extends CModule
 	 *
 	 * @return void
 	 */
-	public function uninstallEvents()
+	public function uninstallEvents(): void
 	{
         $eventManager = Main\EventManager::getInstance();
-
-        /*$eventManager->unRegisterEventHandler(
-            "main", "OnEpilog",
+/*
+        $eventManager->unRegisterEventHandler(
+            "main", "OnEndBufferContent",
             $this->MODULE_ID,
-            "Citfact\\Rest\\Events\\Epilog\\Handler", "onEpilogHandler"
+            "Polus\\Elastic\\Handlers\\BufferContentHandler", "propertySettingsHandler"
+        );
+
+        $eventManager->unRegisterEventHandler(
+            "iblock", "OnIBlockPropertyBuildList",
+            $this->MODULE_ID,
+            "Polus\\Elastic\\Handlers\\BufferContentHandler", "customerPropertyType"
         );*/
 	}
 

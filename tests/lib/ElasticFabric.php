@@ -4,7 +4,7 @@ namespace Polus\Elastic\UnitTests;
 
 class ElasticFabric implements FabricInterface
 {
-    public function createForRequest(): array
+    public function createForResponse(): array
     {
         return [
             'hits' => [

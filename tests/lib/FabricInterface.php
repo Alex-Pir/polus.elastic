@@ -4,5 +4,5 @@ namespace Polus\Elastic\UnitTests;
 
 interface FabricInterface
 {
-    public function createForRequest(): array;
+    public function createForResponse(): array;
 }

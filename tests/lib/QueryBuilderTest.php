@@ -19,7 +19,7 @@ class QueryBuilderTest extends TestCase
 
         $searchMock
             ->method('search')
-            ->willReturn((new ElasticFabric())->createForRequest());
+            ->willReturn((new ElasticFabric())->createForResponse());
 
         $this->query = new SearchQueryBuilder($_SERVER['ELASTIC_TEST_INDEX'], searchClient: $searchMock);
     }
