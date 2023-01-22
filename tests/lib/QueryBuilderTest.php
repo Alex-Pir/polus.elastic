@@ -4,7 +4,7 @@ namespace Polus\Elastic\UnitTests;
 
 use PHPUnit\Framework\TestCase;
 use Polus\Elastic\Search\QueryBuilder;
-use Polus\Elastic\Search\Search;
+use Polus\Elastic\Search\ElasticClient;
 use Polus\Elastic\Search\SearchQueryBuilder;
 
 class QueryBuilderTest extends TestCase
@@ -13,7 +13,7 @@ class QueryBuilderTest extends TestCase
 
     public function setUp(): void
     {
-        $searchMock = $this->getMockBuilder(Search::class)
+        $searchMock = $this->getMockBuilder(ElasticClient::class)
             ->onlyMethods(['search'])
             ->getMock();
 
