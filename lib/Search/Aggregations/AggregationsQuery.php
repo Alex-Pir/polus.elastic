@@ -5,6 +5,7 @@ namespace Polus\Elastic\Search\Aggregations;
 use Polus\Elastic\Search\Contracts\AggregationInterface;
 use Polus\Elastic\Search\Contracts\AggregationQueryInterface;
 use Polus\Elastic\Search\Contracts\QueryInterface;
+use Polus\Elastic\Search\ElasticClient;
 use Polus\Elastic\Search\Exceptions\AggregationSearchException;
 use Polus\Elastic\Search\QueryBuilder;
 
@@ -21,7 +22,8 @@ class AggregationsQuery extends QueryBuilder
     public function __construct(
         string $index,
         ?QueryInterface $query = null,
-        protected ?AggregationQueryInterface $aggregationQuery = null
+        protected ?AggregationQueryInterface $aggregationQuery = null,
+        protected ?ElasticClient $searchClient = null
     ) {
         parent::__construct($index, $query);
 

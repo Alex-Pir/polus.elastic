@@ -57,7 +57,7 @@ class Options
 
     protected function mainTab(): Tab
     {
-        $tab = new Tab('edit1', 'Настройки', 'Основные настройки');
+        $tab = new ElasticOptionsTab('edit1', 'Настройки', 'Основные настройки');
         $tab->addField(new TextAreaField(Constants::ELASTIC_HOST, 'Хосты'));
 
         return $tab;

@@ -16,14 +16,14 @@ abstract class QueryBuilder implements SearchInterface
     public function __construct(
         protected string $index,
         protected ?QueryInterface $query = null,
-        protected ?Search $searchClient = null
+        protected ?ElasticClient $searchClient = null
     ) {
         if (is_null($this->query)) {
             $this->query = new BoolBuilder();
         }
 
         if (is_null($this->searchClient)) {
-            $this->searchClient = new Search();
+            $this->searchClient = new ElasticClient();
         }
     }
 
@@ -38,5 +38,10 @@ abstract class QueryBuilder implements SearchInterface
         }
 
         return $this;
+    }
+
+    public function getClient(): ElasticClient
+    {
+        return $this->searchClient;
     }
 }
