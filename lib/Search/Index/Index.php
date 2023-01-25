@@ -45,9 +45,19 @@ abstract class Index
         $this->client->deleteIndex($this->uniqueIndexName());
     }
 
-    public function getClient()
+    public function getClient(): ?ElasticClient
     {
         return $this->client;
+    }
+
+    public function index(array $body): void
+    {
+        $this->client->index($this->uniqueIndexName(), $body);
+    }
+
+    public function bulk(array $body): void
+    {
+        $this->client->bulk($this->uniqueIndexName(), $body);
     }
 
     abstract public function indexName(): string;

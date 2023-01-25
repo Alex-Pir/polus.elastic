@@ -62,11 +62,27 @@ class ElasticClient
         ]);
     }
 
-    public function deleteById(string $id, string $index): callable|array
+    public function deleteById(string $id, string $index): void
     {
-        return $this->client->delete([
+        $this->client->delete([
             'id' => $id,
             'index' => $index
+        ]);
+    }
+
+    public function bulk(string $index, array $body): array
+    {
+        return $this->client->bulk([
+            'index' => $index,
+            'body' => $body
+        ]);
+    }
+
+    public function index(string $index, array $body): array
+    {
+        return $this->client->index([
+            'index' => $index,
+            'body' => $body
         ]);
     }
 }
