@@ -25,6 +25,14 @@ class BoolBuilder implements QueryInterface
         $this->clear();
     }
 
+    public function __clone(): void
+    {
+
+        $this->must = clone $this->must;
+        $this->mustNot = clone $this->mustNot;
+        $this->filter = clone $this->filter;
+    }
+
     /**
      * @throws CriteriaException
      */
@@ -38,7 +46,7 @@ class BoolBuilder implements QueryInterface
             [$operator, $value] = [static::EQUALS, $operator];
         }
 
-        $this->filter->add($this->createCriteria($field, $operator, $value));
+        $this->filter->add($field, $this->createCriteria($field, $operator, $value));
 
         return $this;
     }
@@ -48,7 +56,7 @@ class BoolBuilder implements QueryInterface
      */
     public function whereNot(string $field, string|int $value): QueryInterface
     {
-        $this->mustNot->add($this->createCriteria($field, static::NOT_EQUALS, $value));
+        $this->mustNot->add($field, $this->createCriteria($field, static::NOT_EQUALS, $value));
         return $this;
     }
 
@@ -58,7 +66,7 @@ class BoolBuilder implements QueryInterface
     public function whereIn(string $field, array $value): QueryInterface
     {
         $terms = new Terms($field, $value);
-        $this->filter->add($terms);
+        $this->filter->add($field, $terms);
 
         return $this;
     }
@@ -69,7 +77,7 @@ class BoolBuilder implements QueryInterface
     public function whereNotIn(string $field, array $value): QueryInterface
     {
         $terms = new Terms($field, $value);
-        $this->mustNot->add($terms);
+        $this->mustNot->add($field, $terms);
 
         return $this;
     }
@@ -114,5 +122,16 @@ class BoolBuilder implements QueryInterface
         $this->must = new CriteriaCollection();
         $this->mustNot = new CriteriaCollection();
         $this->filter = new CriteriaCollection();
+    }
+
+    public function copyWithoutField(string $field): QueryInterface
+    {
+        $newBoolBuilder = clone $this;
+
+        $newBoolBuilder->must->remove($field);
+        $newBoolBuilder->mustNot->remove($field);
+        $newBoolBuilder->filter->remove($field);
+
+        return $newBoolBuilder;
     }
 }

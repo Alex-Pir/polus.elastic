@@ -64,5 +64,7 @@ abstract class Index
 
     abstract public function settings(): array;
 
+    abstract public function aggregationFields(): array;
+
     abstract public function indexing(): void;
 }
