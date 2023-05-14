@@ -11,16 +11,13 @@ class Filter
 {
     protected static ?Filter $instance = null;
 
-    protected array $exact = [];
-    protected array $range = [];
-
-    protected Index $index;
     protected Request $request;
+    protected SearchQueryBuilder $searchQueryBuilder;
 
     protected function __construct(Index $index)
     {
-        $this->index = $index;
         $this->request = Context::getCurrent()->getRequest();
+        $this->searchQueryBuilder = new SearchQueryBuilder($index->uniqueIndexName(), searchClient: $index->getClient());
     }
 
     public static function init(Index $index): static
@@ -34,7 +31,7 @@ class Filter
 
     public function query(): SearchQueryBuilder
     {
-        return $this->index->query();
+        return $this->searchQueryBuilder;
     }
 
     public function convertUrlToAggregateFilter(string $url): void
