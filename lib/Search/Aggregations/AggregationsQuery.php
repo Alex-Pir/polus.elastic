@@ -16,6 +16,7 @@ use Polus\Elastic\Search\QueryBuilder;
  * @method AggregationsQuery whereNotIn(string $field, array $value)
  * @method AggregationsQuery terms(string $field, string $path)
  * @method AggregationsQuery minMax(string $field, string $path)
+ * @method AggregationsQuery filter(string $field, QueryInterface $queryBuilder, AggregationInterface $collection)
  */
 class AggregationsQuery extends QueryBuilder
 {
@@ -65,6 +66,7 @@ class AggregationsQuery extends QueryBuilder
 
     protected function parseResult(array $searchResult)
     {
+        file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/logSeRes.log', print_r($searchResult, true) . "\n", FILE_APPEND);
         $aggregationsResult = $searchResult['aggregations'] ?? [];
         $aggregationQueryValues = $this->aggregationQuery->getAggregationsQueryValues();
 

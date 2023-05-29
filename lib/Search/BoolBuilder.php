@@ -109,7 +109,7 @@ class BoolBuilder implements QueryInterface
 
     protected function searchWay(string $wayName, CriteriaCollection $collection): array
     {
-        return $collection->isEmpty() ? [] : [$wayName => $collection->toDSL()];
+        return $collection->isEmpty() ? [] : [$wayName => array_values($collection->toDSL())];
     }
 
     protected function isSearchEmpty(): bool

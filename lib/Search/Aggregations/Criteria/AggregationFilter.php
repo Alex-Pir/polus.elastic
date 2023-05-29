@@ -4,6 +4,7 @@ namespace Polus\Elastic\Search\Aggregations\Criteria;
 
 use Polus\Elastic\Search\Aggregations\AggregationsCollection;
 use Polus\Elastic\Search\Aggregations\Results\SearchResult;
+use Polus\Elastic\Search\Aggregations\Results\SearchResultCollection;
 use Polus\Elastic\Search\Contracts\AggregationInterface;
 use Polus\Elastic\Search\Contracts\QueryInterface;
 
@@ -12,13 +13,13 @@ class AggregationFilter implements AggregationInterface
     public function __construct(
         protected string $field,
         protected QueryInterface $value,
-        protected AggregationsCollection $children
+        protected AggregationInterface $children
     ) {
     }
 
     public function parseResult(array $fields): SearchResult
     {
-        // TODO: Implement parseResult() method.
+        return $this->children->parseResult($fields);
     }
 
     public function toDSL(): array
