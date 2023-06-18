@@ -4,6 +4,8 @@ namespace Polus\Elastic\UnitTests;
 
 class ElasticFabric implements FabricInterface
 {
+    public static string $indexName = 'index_test';
+
     public function createForRequest(): array
     {
         return [

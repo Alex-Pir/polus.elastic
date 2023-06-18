@@ -60,6 +60,11 @@ abstract class Index
         $this->client->bulk($this->uniqueIndexName(), $body);
     }
 
+    public function isExists(): bool
+    {
+        return $this->client->isExists($this->uniqueIndexName());
+    }
+
     abstract public function indexName(): string;
 
     abstract public function settings(): array;

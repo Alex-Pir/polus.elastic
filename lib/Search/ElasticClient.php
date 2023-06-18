@@ -85,4 +85,11 @@ class ElasticClient
             'body' => $body
         ]);
     }
+
+    public function isExists(string $index): bool
+    {
+        return $this->client->indices()->exists([
+            'index' => $index
+        ]);
+    }
 }

@@ -26,7 +26,7 @@ class AggregationsQuery extends QueryBuilder
         protected ?AggregationQueryInterface $aggregationQuery = null,
         protected ?ElasticClient $searchClient = null
     ) {
-        parent::__construct($index, $query);
+        parent::__construct($index, $query, $searchClient);
 
         if (is_null($aggregationQuery)) {
             $this->aggregationQuery = new AggregationsBuilder();
@@ -66,7 +66,6 @@ class AggregationsQuery extends QueryBuilder
 
     protected function parseResult(array $searchResult)
     {
-        file_put_contents($_SERVER['DOCUMENT_ROOT'] . '/logSeRes.log', print_r($searchResult, true) . "\n", FILE_APPEND);
         $aggregationsResult = $searchResult['aggregations'] ?? [];
         $aggregationQueryValues = $this->aggregationQuery->getAggregationsQueryValues();
 

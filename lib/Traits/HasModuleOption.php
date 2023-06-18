@@ -21,7 +21,6 @@ Loc::loadMessages(__FILE__);
  */
 trait HasModuleOption
 {
-
     /**
      * @throws ObjectPropertyException
      * @throws SystemException
@@ -49,9 +48,9 @@ trait HasModuleOption
      *
      * @param string $code
      * @param $default
-     * @return mixed
+     * @return string|null
      */
-    public static function getModuleOption(string $code, $default = null)
+    public static function getModuleOption(string $code, $default = null): ?string
     {
         return static::getOtherModuleOption(Constants::MODULE_ID, $code, $default);
     }
@@ -62,9 +61,9 @@ trait HasModuleOption
      * @param string $moduleId
      * @param string $code
      * @param null $default
-     * @return mixed
+     * @return string|null
      */
-    public static function getOtherModuleOption(string $moduleId, string $code, $default = null)
+    public static function getOtherModuleOption(string $moduleId, string $code, $default = null): ?string
     {
         try {
             return Option::get($moduleId, $code, $default);
