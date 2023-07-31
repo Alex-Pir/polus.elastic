@@ -7,7 +7,6 @@ use Polus\Elastic\Search\Aggregations\Criteria\AggregationMinMax;
 use Polus\Elastic\Search\Aggregations\Criteria\AggregationTerms;
 use Polus\Elastic\Search\Contracts\AggregationInterface;
 use Polus\Elastic\Search\Contracts\AggregationQueryInterface;
-use Polus\Elastic\Search\Contracts\AggregationResultInterface;
 use Polus\Elastic\Search\Contracts\QueryInterface;
 use Polus\Elastic\Search\Exceptions\CriteriaException;
 

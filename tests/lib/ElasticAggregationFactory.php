@@ -4,7 +4,9 @@ namespace Polus\Elastic\UnitTests;
 
 class ElasticAggregationFactory extends ElasticFabric
 {
-    //protected
+    public const TERMS = 'terms';
+
+    protected string $method = '';
 
     public function createForRequest(): array
     {
@@ -13,34 +15,30 @@ class ElasticAggregationFactory extends ElasticFabric
                 'hits' => [
                 ]
             ],
-            'aggregations' => [
-
-            ]
+            'aggregations' => $this->method === static::TERMS ? $this->terms() : ''
         ];
     }
 
-    public function setTerms()
+    public function setMethodAsTerms(): static
     {
-
+        $this->method = static::TERMS;
+        return $this;
     }
 
     protected function terms(): array
     {
         return [
             'offers' => [
-                'doc_count' => rand(1, 10),
-                'offers' => [
-                    'doc_count_error_upper_bound' => 0,
-                    'sum_other_doc_count' => 0,
-                    'buckets' => [
-                        [
-                            'key' => 'first',
-                            'doc_count' => rand(1, 100)
-                        ],
-                        [
-                            'key' => 'second',
-                            'doc_count' => rand(1, 100)
-                        ]
+                'doc_count_error_upper_bound' => 0,
+                'sum_other_doc_count' => 0,
+                'buckets' => [
+                    [
+                        'key' => 'first',
+                        'doc_count' => rand(1, 100)
+                    ],
+                    [
+                        'key' => 'second',
+                        'doc_count' => rand(1, 100)
                     ]
                 ]
             ]
