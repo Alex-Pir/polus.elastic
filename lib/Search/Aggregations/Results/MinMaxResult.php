@@ -17,7 +17,7 @@ class MinMaxResult extends SearchResult
             throw new AggregationResultException("{$this->field}_min");
         }
 
-        return $this->values["{$this->field}_min"]['value'];
+        return $this->values["{$this->field}_min"]['value'] ?? $this->values["{$this->field}_min"];
     }
 
     /**
@@ -29,6 +29,6 @@ class MinMaxResult extends SearchResult
             throw new AggregationResultException("{$this->field}_max");
         }
 
-        return $this->values["{$this->field}_max"]['value'];
+        return $this->values["{$this->field}_max"]['value'] ?? $this->values["{$this->field}_max"];
     }
 }
