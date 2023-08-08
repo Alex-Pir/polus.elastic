@@ -16,6 +16,7 @@ use Polus\Elastic\Search\QueryBuilder;
  * @method AggregationsQuery whereNotIn(string $field, array $value)
  * @method AggregationsQuery terms(string $field, string $path)
  * @method AggregationsQuery minMax(string $field, string $path)
+ * @method AggregationsQuery filter(string $field, QueryInterface $queryBuilder, AggregationInterface $collection)
  */
 class AggregationsQuery extends QueryBuilder
 {
@@ -25,7 +26,7 @@ class AggregationsQuery extends QueryBuilder
         protected ?AggregationQueryInterface $aggregationQuery = null,
         protected ?ElasticClient $searchClient = null
     ) {
-        parent::__construct($index, $query);
+        parent::__construct($index, $query, $searchClient);
 
         if (is_null($aggregationQuery)) {
             $this->aggregationQuery = new AggregationsBuilder();

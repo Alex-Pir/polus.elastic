@@ -7,7 +7,7 @@ use Polus\Elastic\Search\QueryBuilder;
 use Polus\Elastic\Search\ElasticClient;
 use Polus\Elastic\Search\SearchQueryBuilder;
 
-class QueryBuilderTest extends TestCase
+class QueryBuilderTest extends BaseTestCase
 {
     protected QueryBuilder $query;
 
@@ -21,7 +21,7 @@ class QueryBuilderTest extends TestCase
             ->method('search')
             ->willReturn((new ElasticFabric())->createForRequest());
 
-        $this->query = new SearchQueryBuilder($_SERVER['ELASTIC_TEST_INDEX'], searchClient: $searchMock);
+        $this->query = new SearchQueryBuilder((new TestIndex())->uniqueIndexName(), searchClient: $searchMock);
     }
 
     public function testSearchSuccess(): void

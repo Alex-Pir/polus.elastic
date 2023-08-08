@@ -9,9 +9,20 @@ class CriteriaCollection implements CriteriaInterface
     /** @var CriteriaInterface[] */
     protected array $criteria = [];
 
-    public function add(CriteriaInterface $criteriaValue): void
+    public function add(string $fieldName, CriteriaInterface $criteriaValue): void
     {
-        $this->criteria[] = $criteriaValue;
+        $this->criteria[$fieldName] = $criteriaValue;
+    }
+
+    public function remove(string $fieldName): void
+    {
+        if (isset($this->criteria[$fieldName])) {
+            $this->criteria = array_filter(
+                $this->criteria,
+                fn (string $key) => $key !== $fieldName,
+                ARRAY_FILTER_USE_KEY
+            );
+        }
     }
 
     public function toDSL(): array
